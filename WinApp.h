@@ -25,8 +25,6 @@ public:
 private:
 	HWND hwnd;
 	WNDCLASSEX w{};
-
-
 	MSG msg{};  // メッセージ
 
 
