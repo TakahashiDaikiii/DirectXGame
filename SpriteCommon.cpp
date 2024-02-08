@@ -68,12 +68,12 @@ void SpriteCommon::Initialize(DirectXCommon* dxCommon)
 
 
 	//Shader‚ðƒRƒ“ƒpƒCƒ‹‚·‚é
-	ComPtr<IDxcBlob> vertexShaderBlob = CompileShader(L"Resources/shader/SpriteVS.hlsl",
+	ComPtr<IDxcBlob> vertexShaderBlob = CompileShader(L"Resources/shaders/SpriteVS.hlsl",
 		L"vs_6_0", dxcUtils.Get(), dxcCompiler.Get(), includeHandler.Get());
 	assert(vertexShaderBlob != nullptr);
 
 
-	ComPtr<IDxcBlob> pixelShaderBlob = CompileShader(L"Resources/shader/SpriteVS.hlsl",
+	ComPtr<IDxcBlob> pixelShaderBlob = CompileShader(L"Resources/shaders/SpritePS.hlsl",
 		L"ps_6_0", dxcUtils.Get(), dxcCompiler.Get(), includeHandler.Get());
 	assert(pixelShaderBlob != nullptr);
 
