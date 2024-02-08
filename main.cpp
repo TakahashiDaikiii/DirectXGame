@@ -33,10 +33,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     input_->Initialize(winApp_);
 
     SpriteCommon* spriteCommon = new SpriteCommon();
-    spriteCommon->Initialize();
+    spriteCommon->Initialize(dxCommon_);
 
     Sprite* sprite = new Sprite();
-    sprite->Initialize();
+    sprite->Initialize(dxCommon_,spriteCommon);
 
 
     // ゲームループ
@@ -49,6 +49,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
         input_->Update();
 
         dxCommon_->PreDraw();
+
+        sprite->Draw();
 
         dxCommon_->PosDraw();
 
