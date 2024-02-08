@@ -21,6 +21,14 @@ public:
 
 	ID3D12Device* Getdevice() const { return device.Get(); }
 	ID3D12GraphicsCommandList* GetCommmandList() const { return commandList.Get(); }
+
+	DXGI_SWAP_CHAIN_DESC1 GetswapChainDesc() { return swapChainDesc; }
+
+	D3D12_RENDER_TARGET_VIEW_DESC GetRtvDesc() { return rtvDesc; }
+
+	ID3D12DescriptorHeap* GetSrvDescriptorHeap() { return srvDescriptorHeap.Get(); }
+
+
 private:
 	//デバイス
 	void DeviceInitialize();
@@ -34,6 +42,8 @@ private:
 	void DepthBufferInitialize();
 	//フェンス
 	void FenceInitialize();
+	//ディスクリプターヒープ作成
+	ID3D12DescriptorHeap* CreateDescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE heapType, UINT numDescripots, bool shaderVisible);
 
 	void InitializeFixFPS();
 
@@ -67,5 +77,13 @@ private:
 
 	D3D12_RESOURCE_BARRIER barrierDesc{};
 
+	D3D12_RENDER_TARGET_VIEW_DESC rtvDesc{};
+
 	std::chrono::steady_clock::time_point reference_;
+
+	Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> rtvDescriptorHeap;
+
+	Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> srvDescriptorHeap;
+
+
 };
