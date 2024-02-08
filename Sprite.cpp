@@ -22,8 +22,9 @@ void Sprite::Initialize(DirectXCommon* dxCommon, SpriteCommon* common)
 	vertexResourceDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
 	HRESULT result = dxCommon_->Getdevice()->CreateCommittedResource(&uploadHeapProjecties, D3D12_HEAP_FLAG_NONE, &vertexResourceDesc, D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&vertexResource));
-
 	assert(SUCCEEDED(result));
+
+
 	vertexBufferView.BufferLocation = vertexResource->GetGPUVirtualAddress();
 	vertexBufferView.SizeInBytes = sizeof(DirectX::XMFLOAT4) * 3;
 	vertexBufferView.StrideInBytes = sizeof(DirectX::XMFLOAT4);

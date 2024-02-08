@@ -30,6 +30,20 @@ void SpriteCommon::Initialize(DirectXCommon* dxCommon)
 
 	descriptorRootSignature.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
 
+
+	D3D12_ROOT_PARAMETER rootParameters[1] = {};
+	rootParameters[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
+
+    rootParameters[0].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+
+    rootParameters[0].Descriptor.ShaderRegister = 0;
+
+	descriptorRootSignature.pParameters = rootParameters;
+
+	descriptorRootSignature.NumParameters = _countof(rootParameters);
+
+
+
 	ComPtr<ID3D10Blob> signatureBlob;
 	ComPtr<ID3D10Blob> errorBlob;
 	result = D3D12SerializeRootSignature(&descriptorRootSignature, D3D_ROOT_SIGNATURE_VERSION_1, &signatureBlob, &errorBlob);
@@ -68,12 +82,12 @@ void SpriteCommon::Initialize(DirectXCommon* dxCommon)
 
 
 	//Shader‚ðƒRƒ“ƒpƒCƒ‹‚·‚é
-	ComPtr<IDxcBlob> vertexShaderBlob = CompileShader(L"Resources/shader/SpriteVS.hlsl",
+	ComPtr<IDxcBlob> vertexShaderBlob = CompileShader(L"Resources/shaders/SpriteVS.hlsl",
 		L"vs_6_0", dxcUtils.Get(), dxcCompiler.Get(), includeHandler.Get());
 	assert(vertexShaderBlob != nullptr);
 
 
-	ComPtr<IDxcBlob> pixelShaderBlob = CompileShader(L"Resources/shader/SpriteVS.hlsl",
+	ComPtr<IDxcBlob> pixelShaderBlob = CompileShader(L"Resources/shaders/SpritePS.hlsl",
 		L"ps_6_0", dxcUtils.Get(), dxcCompiler.Get(), includeHandler.Get());
 	assert(pixelShaderBlob != nullptr);
 
