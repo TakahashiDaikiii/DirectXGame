@@ -54,7 +54,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     {
         Sprite* temp = new Sprite();
         if (i % 2 == 0)  temp->Initialize(dxCommon_, spriteCommon, L"Resources/mario.jpg");
-        else if (i % 2 == 1)  temp->Initialize(dxCommon_, spriteCommon, L"Resources/reim.jpg");
+        else if (i % 2 == 1)  temp->Initialize(dxCommon_, spriteCommon, L"Resources/mario.jpg");
         temp->SetPosition({ (float)i * 120,0 });
         sprite.push_back(temp);
     }
@@ -74,28 +74,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
         ////移動
 
-        DirectX::XMFLOAT2 pos = sprite->GetPosition();
+        DirectX::XMFLOAT2 pos = sprite[0]->GetPosition();
         pos.x += 0.01f;
-        sprite->SetPosition(pos);
+        sprite[0]->SetPosition(pos);
 
         //回転
-        float rot = sprite->GetRotation();
+        float rot = sprite[0]->GetRotation();
         rot += 0.005f;
-        sprite->SetRotation(rot);
+        sprite[0]->SetRotation(rot);
 
         //色
-        DirectX::XMFLOAT4 color = sprite->Getcolor();
+        DirectX::XMFLOAT4 color = sprite[0]->Getcolor();
         color.x -= 0.1f;
         if (color.x < 0)
         {
             color.x = 1.0f;
         }
-        sprite->SetColor(color);
+        sprite[0]->SetColor(color);
 
         //サイズ
-        DirectX::XMFLOAT2 size = sprite->GetSize();
+        DirectX::XMFLOAT2 size = sprite[0]->GetSize();
         size.y += 0.01f;
-        sprite->SetSize(size);
+        sprite[0]->SetSize(size);
 
         for (int i = 0; i < 5; i++)
         {

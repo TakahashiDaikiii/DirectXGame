@@ -44,10 +44,28 @@ public:
 	DirectX::XMFLOAT4 Getcolor() { return color_; }
 	DirectX::XMFLOAT2 GetSize() { return size; }
 
+	DirectX::XMFLOAT2 GetAnchorPoint() { return anchorPoint; }
+
+	bool GetFlipX() { return isFlipX; }
+
+	bool GetFlipY() { return isFlipY; }
+
+	DirectX::XMFLOAT2 GetTextureLeftTop() { return textureLeftTop;}
+	DirectX::XMFLOAT2 GetTextureSize() { return textureSize; }
+
 	void SetPosition(DirectX::XMFLOAT2 pos) { position = pos; }
 	void SetRotation(float rot) { rotation = rot; }
 	void SetColor(DirectX::XMFLOAT4 color) { color_ = color; }
 	void SetSize(DirectX::XMFLOAT2 size) { this->size = size; }
+
+	void SetAnchorPoint(DirectX::XMFLOAT2 anchor) { anchorPoint = anchor; }
+
+	void SetFlipX(bool isFlag) { isFlipX = isFlag; }
+	void SetFlipY(bool isFlag) { isFlipY = isFlag; }
+
+	void SetTextureLeftTop(DirectX::XMFLOAT2 value) { textureLeftTop = value; }
+	void SetTextureSize(DirectX::XMFLOAT2 size) { textureSize = size; }
+
 
 	void SetTexture(std::wstring textureFilePath);
 private:
@@ -59,6 +77,8 @@ private:
 	void CreateMaterial();
 
 	void CreateWVP();
+
+	void AdjustTextureSize();
 
 
 
@@ -94,7 +114,18 @@ private:
 
 	uint32_t textureIndex_ = 0;
 
+	//アンカーポイント
+	DirectX::XMFLOAT2 anchorPoint = { 0.5f,0.5f };
 
+	bool isFlipX = false;
+
+	bool isFlipY = false;
+
+	//切り抜き
+
+	DirectX::XMFLOAT2 textureLeftTop = { 0,0 };
+
+	DirectX::XMFLOAT2 textureSize = { 0,0 };
 
 
 	Transform cameraTransform = { {1,1,1},{0,0,0},{0,0,-5} };

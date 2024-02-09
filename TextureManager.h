@@ -26,6 +26,8 @@ public:
 	uint32_t GetTextureIndexFilePath(const std::wstring&filePath);
 
 	D3D12_GPU_DESCRIPTOR_HANDLE GetSrvHandleGPU(uint32_t textureIndex);
+
+	const DirectX::TexMetadata& GetMetaData(uint32_t textureIndex);
 	
 
 private:
