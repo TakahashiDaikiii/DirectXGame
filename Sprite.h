@@ -8,6 +8,8 @@
 #include"SpriteCommon.h"
 #include<DirectXMath.h>
 
+
+
 class Sprite
 {
 	struct Transform {
@@ -29,12 +31,25 @@ class Sprite
 	};
 
 public:
-	void Initialize(DirectXCommon* dxCommon,SpriteCommon* common);
+	void Initialize(DirectXCommon* dxCommon,SpriteCommon* common,std::wstring textureFilePath);
 
 	void Update();
 
 	void Draw();
 
+
+	//getter /setter
+	DirectX::XMFLOAT2 GetPosition() {return position;}
+	float GetRotation() { return rotation; }
+	DirectX::XMFLOAT4 Getcolor() { return color_; }
+	DirectX::XMFLOAT2 GetSize() { return size; }
+
+	void SetPosition(DirectX::XMFLOAT2 pos) { position = pos; }
+	void SetRotation(float rot) { rotation = rot; }
+	void SetColor(DirectX::XMFLOAT4 color) { color_ = color; }
+	void SetSize(DirectX::XMFLOAT2 size) { this->size = size; }
+
+	void SetTexture(std::wstring textureFilePath);
 private:
 
 	void CreateVertex();
@@ -52,6 +67,7 @@ private:
 
 	SpriteCommon* common_ = nullptr;
 
+	VertexData* vertexData = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3D12Resource> vertexResource;
 	D3D12_VERTEX_BUFFER_VIEW vertexBufferView{};
@@ -67,13 +83,19 @@ private:
 
 	DirectX:: XMMATRIX* wvpData = nullptr;
 
-	D3D12_GPU_DESCRIPTOR_HANDLE textureSrvHandleGPU;
-
 	DirectX::XMFLOAT4 color_ = { 1.0f,1.0f,1.0f,1.0f };
 
 	Transform uvTransform = { {1,1,1},{0,0,0} ,{0,0,0} };
 
 	Transform transform = { {1,1,1},{0,0,0},{0,0,0} };
+	DirectX::XMFLOAT2 position = { 0,0 };
+	float rotation = 0;
+	DirectX::XMFLOAT2 size = { 512,512 };
+
+	uint32_t textureIndex_ = 0;
+
+
+
 
 	Transform cameraTransform = { {1,1,1},{0,0,0},{0,0,-5} };
 };

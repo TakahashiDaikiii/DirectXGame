@@ -49,6 +49,9 @@ private:
 
 	void UpdateFixFPS();
 
+public:
+	static const uint32_t kMaxSRVCount;
+
 
 private:
 
